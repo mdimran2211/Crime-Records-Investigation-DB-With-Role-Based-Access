@@ -1,0 +1,207 @@
+#CRIMINAL TABLES#
+CREATE TABLE Criminal (
+    ->     Criminal_ID INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Name VARCHAR(100),
+    ->     DOB DATE,
+    ->     Crime_Type VARCHAR(100),
+    ->     Arrest_Date DATE
+    -> );
+Query OK, 0 rows affected (0.025 sec)
+MariaDB [crime_db]> INSERT INTO Criminal (Name, DOB, Crime_Type, Arrest_Date) VALUES
+    -> ('Ravi', '1990-05-12', 'Theft', '2023-01-10'),
+    -> ('Amit', '1988-03-22', 'Robbery', '2023-02-15'),
+    -> ('John', '1992-07-18', 'Fraud', '2023-03-12'),
+    -> ('Ali', '1985-09-10', 'Murder', '2023-04-05'),
+    -> ('Sara', '1995-12-01', 'Cyber Crime', '2023-05-20'),
+    -> ('Neha', '1993-06-14', 'Kidnapping', '2023-06-18'),
+    -> ('Rahul', '1991-11-11', 'Drugs', '2023-07-25'),
+    -> ('David', '1987-08-08', 'Smuggling', '2023-08-30'),
+    -> ('Priya', '1996-02-02', 'Assault', '2023-09-10'),
+    -> ('Karan', '1994-04-04', 'Theft', '2023-10-12');
+Query OK, 10 rows affected (0.054 sec)
+MariaDB [crime_db]> SELECT*FROM Criminal;
++-------------+-------+------------+-------------+-------------+
+| Criminal_ID | Name  | DOB        | Crime_Type  | Arrest_Date |
++-------------+-------+------------+-------------+-------------+
+|           1 | Ravi  | 1990-05-12 | Theft       | 2023-01-10  |
+|           2 | Amit  | 1988-03-22 | Robbery     | 2023-02-15  |
+|           3 | John  | 1992-07-18 | Fraud       | 2023-03-12  |
+|           4 | Ali   | 1985-09-10 | Murder      | 2023-04-05  |
+|           5 | Sara  | 1995-12-01 | Cyber Crime | 2023-05-20  |
+|           6 | Neha  | 1993-06-14 | Kidnapping  | 2023-06-18  |
+|           7 | Rahul | 1991-11-11 | Drugs       | 2023-07-25  |
+|           8 | David | 1987-08-08 | Smuggling   | 2023-08-30  |
+|           9 | Priya | 1996-02-02 | Assault     | 2023-09-10  |
+|          10 | Karan | 1994-04-04 | Theft       | 2023-10-12  |
++-------------+-------+------------+-------------+-------------+
+10 rows in set (0.001 sec)
+#VICTIM TABLE
+
+ CREATE TABLE Victim (
+    ->     Victim_ID INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Name VARCHAR(100),
+    ->     DOB DATE,
+    ->     Address VARCHAR(255),
+    ->     Contact_Number VARCHAR(15)
+    -> );
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [crime_db]> INSERT INTO Victim (Name, DOB, Address, Contact_Number) VALUES
+    -> ('Ankit', '2000-01-01', 'Delhi', '9000000001'),
+    -> ('Pooja', '1999-02-02', 'Mumbai', '9000000002'),
+    -> ('Raj', '1998-03-03', 'Pune', '9000000003'),
+    -> ('Simran', '2001-04-04', 'Delhi', '9000000004'),
+    -> ('Arjun', '1997-05-05', 'Chennai', '9000000005'),
+    -> ('Meena', '1996-06-06', 'Jaipur', '9000000006'),
+    -> ('Rohit', '1995-07-07', 'Bhopal', '9000000007'),
+    -> ('Sneha', '1994-08-08', 'Kolkata', '9000000008'),
+    -> ('Vikas', '1993-09-09', 'Noida', '9000000009'),
+    -> ('Kajal', '1992-10-10', 'Delhi', '9000000010');
+Query OK, 10 rows affected (0.016 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+MariaDB [crime_db]> SELECT*FROM Victim;
++-----------+--------+------------+---------+----------------+
+| Victim_ID | Name   | DOB        | Address | Contact_Number |
++-----------+--------+------------+---------+----------------+
+|         1 | Ankit  | 2000-01-01 | Delhi   | 9000000001     |
+|         2 | Pooja  | 1999-02-02 | Mumbai  | 9000000002     |
+|         3 | Raj    | 1998-03-03 | Pune    | 9000000003     |
+|         4 | Simran | 2001-04-04 | Delhi   | 9000000004     |
+|         5 | Arjun  | 1997-05-05 | Chennai | 9000000005     |
+|         6 | Meena  | 1996-06-06 | Jaipur  | 9000000006     |
+|         7 | Rohit  | 1995-07-07 | Bhopal  | 9000000007     |
+|         8 | Sneha  | 1994-08-08 | Kolkata | 9000000008     |
+|         9 | Vikas  | 1993-09-09 | Noida   | 9000000009     |
+|        10 | Kajal  | 1992-10-10 | Delhi   | 9000000010     |
++-----------+--------+------------+---------+----------------+
+10 rows in set (0.001 sec)
+
+#CRIME CASE TABLE
+
+
+MariaDB [crime_db]> CREATE TABLE Crime_Case (
+    ->     Case_ID INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Case_Type VARCHAR(100),
+    ->     Case_Status VARCHAR(50),
+    ->     Crime_Location VARCHAR(255),
+    ->     Filed_Date DATE
+    -> );
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [crime_db]> INSERT INTO Crime_Case (Case_Type, Case_Status, Crime_Location, Filed_Date) VALUES
+    -> ('Theft', 'Open', 'Delhi', '2023-01-01'),
+    -> ('Robbery', 'Closed', 'Mumbai', '2023-02-01'),
+    -> ('Fraud', 'Open', 'Pune', '2023-03-01'),
+    -> ('Murder', 'Under Trial', 'Lucknow', '2023-04-01'),
+    -> ('Cyber Crime', 'Open', 'Delhi', '2023-05-01'),
+    -> ('Kidnapping', 'Closed', 'Jaipur', '2023-06-01'),
+    -> ('Drugs', 'Open', 'Goa', '2023-07-01'),
+    -> ('Smuggling', 'Closed', 'Kolkata', '2023-08-01'),
+    -> ('Assault', 'Open', 'Patna', '2023-09-01'),
+    -> ('Theft', 'Under Trial', 'Chandigarh', '2023-10-01');
+Query OK, 10 rows affected (0.017 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+
+MariaDB [crime_db]> SELECT*FROM  Crime_Case;
++---------+-------------+-------------+----------------+------------+
+| Case_ID | Case_Type   | Case_Status | Crime_Location | Filed_Date |
++---------+-------------+-------------+----------------+------------+
+|       1 | Theft       | Open        | Delhi          | 2023-01-01 |
+|       2 | Robbery     | Closed      | Mumbai         | 2023-02-01 |
+|       3 | Fraud       | Open        | Pune           | 2023-03-01 |
+|       4 | Murder      | Under Trial | Lucknow        | 2023-04-01 |
+|       5 | Cyber Crime | Open        | Delhi          | 2023-05-01 |
+|       6 | Kidnapping  | Closed      | Jaipur         | 2023-06-01 |
+|       7 | Drugs       | Open        | Goa            | 2023-07-01 |
+|       8 | Smuggling   | Closed      | Kolkata        | 2023-08-01 |
+|       9 | Assault     | Open        | Patna          | 2023-09-01 |
+|      10 | Theft       | Under Trial | Chandigarh     | 2023-10-01 |
++---------+-------------+-------------+----------------+------------+
+10 rows in set (0.001 sec)
+
+#POLICE OFFICER TABLE
+
+ CREATE TABLE Police_Officer (
+    ->     Officer_ID INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Name VARCHAR(100),
+    ->     Officer_Rank VARCHAR(50),
+    ->     Contact_Number VARCHAR(15),
+    ->     Station_ID INT
+    -> );
+Query OK, 0 rows affected (0.026 sec)
+
+MariaDB [crime_db]> INSERT INTO Police_Officer (Name, Officer_Rank, Contact_Number, Station_ID) VALUES
+    -> ('Officer1', 'Inspector', '8000000001', 101),
+    -> ('Officer2', 'SI', '8000000002', 102),
+    -> ('Officer3', 'Constable', '8000000003', 103),
+    -> ('Officer4', 'Inspector', '8000000004', 104),
+    -> ('Officer5', 'SI', '8000000005', 105),
+    -> ('Officer6', 'Constable', '8000000006', 106),
+    -> ('Officer7', 'Inspector', '8000000007', 107),
+    -> ('Officer8', 'SI', '8000000008', 108),
+    -> ('Officer9', 'Constable', '8000000009', 109),
+    -> ('Officer10', 'Inspector', '8000000010', 110);
+Query OK, 10 rows affected (0.019 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [crime_db]> SELECT * FROM Police_Officer;
++------------+-----------+--------------+----------------+------------+
+| Officer_ID | Name      | Officer_Rank | Contact_Number | Station_ID |
++------------+-----------+--------------+----------------+------------+
+|          1 | Officer1  | Inspector    | 8000000001     |        101 |
+|          2 | Officer2  | SI           | 8000000002     |        102 |
+|          3 | Officer3  | Constable    | 8000000003     |        103 |
+|          4 | Officer4  | Inspector    | 8000000004     |        104 |
+|          5 | Officer5  | SI           | 8000000005     |        105 |
+|          6 | Officer6  | Constable    | 8000000006     |        106 |
+|          7 | Officer7  | Inspector    | 8000000007     |        107 |
+|          8 | Officer8  | SI           | 8000000008     |        108 |
+|          9 | Officer9  | Constable    | 8000000009     |        109 |
+|         10 | Officer10 | Inspector    | 8000000010     |        110 |
++------------+-----------+--------------+----------------+------------+
+10 rows in set (0.001 sec)
+
+#EVIDENCE TABLE
+
+
+MariaDB [crime_db]> CREATE TABLE Evidence (
+    ->     Evidence_ID INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Case_ID INT,
+    ->     Evidence_Type VARCHAR(100),
+    ->     Location_Found VARCHAR(255),
+    ->     Collected_Date DATE,
+    ->     FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+    -> );
+Query OK, 0 rows affected (0.045 sec)
+
+MariaDB [crime_db]> INSERT INTO Evidence (Case_ID, Evidence_Type, Location_Found, Collected_Date) VALUES
+    -> (1, 'Fingerprint', 'Delhi', '2023-01-02'),
+    -> (2, 'Weapon', 'Mumbai', '2023-02-02'),
+    -> (3, 'Document', 'Pune', '2023-03-02'),
+    -> (4, 'DNA', 'Lucknow', '2023-04-02'),
+    -> (5, 'Laptop', 'Delhi', '2023-05-02'),
+    -> (6, 'Phone', 'Jaipur', '2023-06-02'),
+    -> (7, 'Drugs', 'Goa', '2023-07-02'),
+    -> (8, 'Cash', 'Kolkata', '2023-08-02'),
+    -> (9, 'Knife', 'Patna', '2023-09-02'),
+    -> (10, 'Clothes', 'Chandigarh', '2023-10-02');
+Query OK, 10 rows affected (0.017 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [crime_db]> SELECT * FROM Evidence;
++-------------+---------+---------------+----------------+----------------+
+| Evidence_ID | Case_ID | Evidence_Type | Location_Found | Collected_Date |
++-------------+---------+---------------+----------------+----------------+
+|           1 |       1 | Fingerprint   | Delhi          | 2023-01-02     |
+|           2 |       2 | Weapon        | Mumbai         | 2023-02-02     |
+|           3 |       3 | Document      | Pune           | 2023-03-02     |
+|           4 |       4 | DNA           | Lucknow        | 2023-04-02     |
+|           5 |       5 | Laptop        | Delhi          | 2023-05-02     |
+|           6 |       6 | Phone         | Jaipur         | 2023-06-02     |
+|           7 |       7 | Drugs         | Goa            | 2023-07-02     |
+|           8 |       8 | Cash          | Kolkata        | 2023-08-02     |
+|           9 |       9 | Knife         | Patna          | 2023-09-02     |
+|          10 |      10 | Clothes       | Chandigarh     | 2023-10-02     |
++-------------+---------+---------------+----------------+----------------+
+10 rows in set (0.001 sec)
