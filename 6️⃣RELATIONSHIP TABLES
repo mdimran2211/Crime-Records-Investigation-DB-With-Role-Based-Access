@@ -1,0 +1,116 @@
+-- 🧑‍⚖️ Criminal ↔ Crime_Case
+CREATE TABLE Committed (
+    Criminal_ID INT,
+    Case_ID INT,
+    Crime_Role VARCHAR(50),
+    Crime_Date DATE,
+    Status VARCHAR(50),
+    PRIMARY KEY (Criminal_ID, Case_ID),
+    FOREIGN KEY (Criminal_ID) REFERENCES Criminal(Criminal_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Committed VALUES
+(1,1,'Main','2023-01-01','Proven'),
+(2,2,'Helper','2023-02-01','Pending'),
+(3,3,'Main','2023-03-01','Proven'),
+(4,4,'Main','2023-04-01','Under Trial'),
+(5,5,'Helper','2023-05-01','Pending'),
+(6,6,'Main','2023-06-01','Proven'),
+(7,7,'Main','2023-07-01','Under Trial'),
+(8,8,'Helper','2023-08-01','Closed'),
+(9,9,'Main','2023-09-01','Pending'),
+(10,10,'Main','2023-10-01','Under Trial');
+
+
+-- 🧍 Victim ↔ Crime_Case
+CREATE TABLE Involved_In (
+    Victim_ID INT,
+    Case_ID INT,
+    Injury_Level VARCHAR(50),
+    Statement_Date DATE,
+    Status VARCHAR(50),
+    PRIMARY KEY (Victim_ID, Case_ID),
+    FOREIGN KEY (Victim_ID) REFERENCES Victim(Victim_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Involved_In VALUES
+(1,1,'Low','2023-01-02','Active'),
+(2,2,'High','2023-02-02','Closed'),
+(3,3,'None','2023-03-02','Active'),
+(4,4,'Medium','2023-04-02','Active'),
+(5,5,'High','2023-05-02','Pending'),
+(6,6,'Medium','2023-06-02','Closed'),
+(7,7,'High','2023-07-02','Active'),
+(8,8,'Low','2023-08-02','Closed'),
+(9,9,'Medium','2023-09-02','Pending'),
+(10,10,'Low','2023-10-02','Active');
+
+
+-- 👮 Police_Officer ↔ Crime_Case
+CREATE TABLE Assigned_To (
+    Officer_ID INT,
+    Case_ID INT,
+    Assignment_Date DATE,
+    Role VARCHAR(50),
+    Status VARCHAR(50),
+    PRIMARY KEY (Officer_ID, Case_ID),
+    FOREIGN KEY (Officer_ID) REFERENCES Police_Officer(Officer_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Assigned_To VALUES
+(1,1,'2023-01-01','Lead','Active'),
+(2,2,'2023-02-01','Support','Active'),
+(3,3,'2023-03-01','Lead','Active'),
+(4,4,'2023-04-01','Lead','Active'),
+(5,5,'2023-05-01','Support','Active'),
+(6,6,'2023-06-01','Lead','Closed'),
+(7,7,'2023-07-01','Lead','Active'),
+(8,8,'2023-08-01','Support','Closed'),
+(9,9,'2023-09-01','Lead','Active'),
+(10,10,'2023-10-01','Lead','Active');
+
+
+
+
+-- Table: Criminal_Case (Many-to-Many)
+CREATE TABLE Criminal_Case (
+    Criminal_ID INT,
+    Case_ID INT,
+    PRIMARY KEY (Criminal_ID, Case_ID),
+    FOREIGN KEY (Criminal_ID) REFERENCES Criminal(Criminal_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Criminal_Case VALUES
+(1, 1),
+(2, 2);
+
+-- Table: Officer_Case (Many-to-Many)
+CREATE TABLE Officer_Case (
+    Officer_ID INT,
+    Case_ID INT,
+    PRIMARY KEY (Officer_ID, Case_ID),
+    FOREIGN KEY (Officer_ID) REFERENCES Police_Officer(Officer_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Officer_Case VALUES
+(1, 1),
+(2, 2);
+
+
+-- Table: Victim_Case (Many-to-Many)
+CREATE TABLE Victim_Case (
+    Victim_ID INT,
+    Case_ID INT,
+    PRIMARY KEY (Victim_ID, Case_ID),
+    FOREIGN KEY (Victim_ID) REFERENCES Victim(Victim_ID),
+    FOREIGN KEY (Case_ID) REFERENCES Crime_Case(Case_ID)
+);
+
+INSERT INTO Victim_Case VALUES
+(1, 1),
+(2, 2);
